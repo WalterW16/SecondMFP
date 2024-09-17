@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SecondMFP", "SecondMFP\SecondMFP.vcxproj", "{5108BBAC-6481-488A-84A0-CE45CB76E3CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5108BBAC-6481-488A-84A0-CE45CB76E3CF}.Debug|x64.ActiveCfg = Debug|x64
+		{5108BBAC-6481-488A-84A0-CE45CB76E3CF}.Debug|x64.Build.0 = Debug|x64
+		{5108BBAC-6481-488A-84A0-CE45CB76E3CF}.Debug|x86.ActiveCfg = Debug|Win32
+		{5108BBAC-6481-488A-84A0-CE45CB76E3CF}.Debug|x86.Build.0 = Debug|Win32
+		{5108BBAC-6481-488A-84A0-CE45CB76E3CF}.Release|x64.ActiveCfg = Release|x64
+		{5108BBAC-6481-488A-84A0-CE45CB76E3CF}.Release|x64.Build.0 = Release|x64
+		{5108BBAC-6481-488A-84A0-CE45CB76E3CF}.Release|x86.ActiveCfg = Release|Win32
+		{5108BBAC-6481-488A-84A0-CE45CB76E3CF}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61C6C4B7-F289-4E3A-8435-ED945E47722D}
+	EndGlobalSection
+EndGlobal
