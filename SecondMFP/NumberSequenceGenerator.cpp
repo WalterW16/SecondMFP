@@ -13,21 +13,23 @@ NumberSequenceGenerator::NumberSequenceGenerator(const NumberSequenceGenerator& 
 void NumberSequenceGenerator::GenerateArithmeticProgression(VeryLong firstTerm, VeryLong CommonDifference, int n)
 {
 	sequence.clear();	
+	VeryLong N = firstTerm;
 	for (int i=0; i<n; ++i) {
-		sequence.push_back(firstTerm);
-		firstTerm += CommonDifference;		
+		sequence.push_back(N);
+		N= N + CommonDifference;
 	}
+
 }
 
 void NumberSequenceGenerator::GenerateGeometricProgression(VeryLong firstTerm , VeryLong commonRatio, int n)
 {
 	sequence.clear();
+	VeryLong N = firstTerm;
 	for (int i = 0; i < n; ++i) {
-		sequence.push_back(firstTerm);
-		firstTerm *= commonRatio;
+		sequence.push_back(N);
+		N= N * commonRatio;
 	}
 }
-
 
 
 int NumberSequenceGenerator::countPrimaryNumbers()
