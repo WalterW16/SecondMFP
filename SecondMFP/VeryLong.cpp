@@ -173,64 +173,56 @@ VeryLong VeryLong::operator*(const VeryLong& v) const {
     result.isNegative = (isNegative != v.isNegative);
     return result;
 }
-
-
-
 VeryLong VeryLong::operator/(const VeryLong& v) const {
     if (v.vlstr == "0") {
         throw std::invalid_argument("Division by zero!");
     }
 
-    // Якщо ділене — 0, результат — 0
+    // Якщо ділене — нуль, результат теж нуль
     if (vlstr == "0") {
         return VeryLong("0");
     }
 
+    // Працюємо з абсолютними значеннями
     VeryLong numerator = *this;
     VeryLong denominator = v;
-
-    // Приведемо до абсолютних значень
     numerator.isNegative = false;
     denominator.isNegative = false;
 
-    VeryLong result;  // Змінна для результату
-    VeryLong current("0");  // Залишок
+    // Якщо ділене менше за дільник, результат 0
+    if (numerator < denominator) {
+        return VeryLong("0");
+    }
 
-    for (size_t i = 0; i < vlstr.size(); ++i) {
-        // Додаємо наступну цифру до залишку
-        current = mult10(current) + VeryLong(std::string(1, vlstr[i]));
+    std::string result = ""; // Тут будемо зберігати результат
+    VeryLong current("");    // Поточне ділене
 
-        // Обчислюємо частку
-        int quotient = 0;
+    // Обчислюємо частку шляхом поступового ділення
+    for (size_t i = vlstr.size(); i > 0; --i) {
+        current.vlstr.insert(current.vlstr.begin(), vlstr[i - 1]);  // Додаємо цифру справа
+        current.removeLeadingZeros();
 
-        // Поки current більше або дорівнює denominator
+        // Шукаємо максимальне число, на яке можна поділити
+        int count = 0;
         while (current >= denominator) {
             current = current - denominator;
-            ++quotient;
+            count++;
         }
 
-        // Додаємо цифру частки до результату
-        if (!result.vlstr.empty() || quotient != 0) {
-            result.vlstr += (quotient + '0');
-        }
+        result += (count + '0');  // Додаємо частку
     }
 
-    // Якщо результат пустий, ставимо 0
-    if (result.vlstr.empty()) {
-        result.vlstr = "0";
+    // Видаляємо ведучі нулі
+    while (result.size() > 1 && result[0] == '0') {
+        result.erase(result.begin());
     }
 
+    VeryLong finalResult(result);
     // Визначаємо знак результату
-    result.isNegative = (isNegative != v.isNegative);
+    finalResult.isNegative = isNegative != v.isNegative;
 
-    // Видаляємо ведучі нулі з результату
-    result.removeLeadingZeros();
-
-    return result;
+    return finalResult;
 }
-
-
-
 
 void VeryLong::removeLeadingZeros() {
     // Поки в рядку є більше одного символу і перший символ є '0'
@@ -368,7 +360,6 @@ VeryLong VeryLong::operator-() const {
     }
     return result;
 }
-
 VeryLong VeryLong::operator%(const VeryLong& v) const {
     if (v.vlstr == "0") {
         throw std::invalid_argument("Division by zero!");
@@ -385,10 +376,13 @@ VeryLong VeryLong::operator%(const VeryLong& v) const {
     VeryLong quotient = numerator / denominator;
     VeryLong result = numerator - (quotient * denominator);
 
-    // Залишок має мати той самий знак, що й ділене
-    result.isNegative = isNegative;
+    // Якщо ділене від'ємне і залишок не нульовий, коригуємо залишок
+    if (isNegative && result.vlstr != "0") {
+        result = denominator - result;
+        result.isNegative = false; // Оскільки коригуємо залишок, результат позитивний
+    }
 
-    // Якщо залишок дорівню нулю, знак не має значення
+    // Якщо залишок дорівнює нулю, знак не має значення
     if (result.vlstr == "0") {
         result.isNegative = false; // Нуль завжди не має знака
     }
@@ -396,3 +390,4 @@ VeryLong VeryLong::operator%(const VeryLong& v) const {
     result.removeLeadingZeros(); // Видаляємо ведучі нулі
     return result;
 }
+

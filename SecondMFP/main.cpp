@@ -23,7 +23,10 @@
 int main() {
     UserInteraction ui;
     NumberSequenceGenerator seq;
-    
+   /* VeryLong first{-25};
+    VeryLong second{4};
+    VeryLong result = sqrt(second);
+    result.putvl();*/
 
     std::vector<std::string> operations{
         " <>Generate Arithmetic Progression",
