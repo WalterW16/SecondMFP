@@ -4,10 +4,10 @@
 
 class VeryLong {
 private:
-    std::string vlstr;  // надвелике число як рядок
-    bool isNegative;    // змінна для збереження знака числа
-    VeryLong multdigit(int d2) const;    // допоміжна функція множення на цифру
-    VeryLong mult10(const VeryLong& v) const;  // допоміжна функція множення на 10
+    std::string vlstr;  
+    bool isNegative;   
+    VeryLong multdigit(int d2) const;  
+    VeryLong mult10(const VeryLong& v) const;  
 
 public:
     VeryLong() : vlstr(""), isNegative(false) {}
@@ -15,9 +15,9 @@ public:
         this->removeLeadingZeros();
         if (!vlstr.empty() && vlstr[0] == '-') {
             isNegative = true;
-            vlstr = vlstr.substr(1); // видаляємо мінус перед збереженням числа
+            vlstr = vlstr.substr(1); 
         }
-        std::reverse(vlstr.begin(), vlstr.end());  // зберігаємо у зворотному порядку
+        std::reverse(vlstr.begin(), vlstr.end());  
     }
     VeryLong(long long n) {
         if (n < 0) {
@@ -28,12 +28,12 @@ public:
             isNegative = false;
         }
         vlstr = std::to_string(n);
-        std::reverse(vlstr.begin(), vlstr.end());  // зберігаємо у зворотному порядку
+        std::reverse(vlstr.begin(), vlstr.end());  
     }
 
-    void putvl() const;  // виведення надвеликого числа
-    void input_vl();     // введення надвеликого числа від користувача
-    void removeLeadingZeros(); // видалення нулів на початку числа
+    void putvl() const; 
+    void input_vl();     
+    void removeLeadingZeros(); 
 
     // Оператори
     VeryLong& operator=(const VeryLong& other);

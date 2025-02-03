@@ -7,7 +7,7 @@
 #include "VeryLong.h"
 static VeryLong sqrt(const VeryLong& n) {
     if (n == VeryLong(0) || n == VeryLong(1)) {
-        return n; // Квадратний корінь з 0 і 1 - це самі числа
+        return n; 
     }
 
     VeryLong low(1), high = n, mid, result;
@@ -17,54 +17,54 @@ static VeryLong sqrt(const VeryLong& n) {
         VeryLong midSquared = mid * mid;
 
         if (midSquared == n) {
-            return mid; // Якщо ідеальний квадрат, повертаємо середнє
+            return mid; 
         }
         else if (midSquared < n) {
             low = mid + VeryLong(1);
-            result = mid; // Записуємо поточне середнє як потенційний результат
+            result = mid; 
         }
         else {
             high = mid - VeryLong(1);
         }
     }
-    return result; // Повертаємо найбільше значення, яке в квадраті не перевищує n
+    return result; 
 }
 
-// Перевірка на просте число
+
 static bool IsPrimary(const VeryLong& n) {
     if (n <= VeryLong(1)) {
         return false;
     }
     if (n == VeryLong(2) || n == VeryLong(3)) {
-        return true;  // 2 і 3 є простими числами
+        return true; 
     }
     if (n % VeryLong(2) == VeryLong(0) || n % VeryLong(3) == VeryLong(0)) {
-        return false;  // Якщо ділимося на 2 або 3, то число не просте
+        return false; 
     }
     if (n <= VeryLong(0)) {
         return false;
     }
 
-    VeryLong divisor(5);  // Починаємо перевірку з числа 5
-    VeryLong step(6);     // Крок для перевірки чисел виду 6k ± 1
-    VeryLong limit = sqrt(n); // Потрібно реалізувати корінь
+    VeryLong divisor(5);  
+    VeryLong step(6);  
+    VeryLong limit = sqrt(n); 
 
     while (divisor <= limit) {
         if (n % divisor == VeryLong(0) || n % (divisor + VeryLong(2)) == VeryLong(0)) {
-            return false;  // Якщо знайшли дільник, то число не є простим
+            return false; 
         }
-        divisor += step;  // Переходимо до наступного числа 6k ± 1
+        divisor += step; 
     }
 
-    return true;  // Число просте
+    return true;  
 }
 
-// Перевірка на парність числа
+
 static bool IsEven( const VeryLong& n) {
     return (n % VeryLong(2)) == VeryLong(0);
 }
 
-// Перевірка на непарність числа
+
 static bool IsOdd( const VeryLong& n) {
     return (n % VeryLong(2)) == VeryLong(1);
 }
